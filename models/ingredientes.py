@@ -11,3 +11,6 @@ class Ingredientes(db.Model):
 
     def es_sano(self):
         return self.calorias < 200 and self.es_vegetariano
+    
+    def vaciar_inventario(self):
+        self.inventario = 0
