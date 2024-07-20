@@ -1,0 +1,3 @@
+-Implementar funcion en modelos de dejar el inventario en 0
+-Hacer el HTML mas dinamico dado que le de ckick a una Copa y me lleve directamente para saber si se vendio la copa o no
+-Ajustar la funcion Vender para que busque en ingredientes y cada vez que venda le reste uno al ingrediente
