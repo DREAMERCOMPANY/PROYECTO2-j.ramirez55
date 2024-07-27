@@ -1,0 +1,111 @@
+<!-- <!doctype html>
+<html lang="en">
+  <head>
+    <meta charset="utf-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1, shrink-to-fit=no">
+    <title>Login</title>
+    <link rel="stylesheet" href="{{ url_for('static', filename='styles.css') }}">
+  </head>
+  <body>
+    <div class="container">
+      <h1>Login</h1>
+      <form method="POST" action="{{ url_for('auth.login') }}">
+        {{ form.hidden_tag() }}
+        <div>
+          {{ form.username.label }} {{ form.username(size=32) }}
+        </div>
+        <div>
+          {{ form.password.label }} {{ form.password(size=32) }}
+        </div>
+        <div>
+          {{ form.remember_me.label }} {{ form.remember_me() }}
+        </div>
+        <div>
+          {{ form.submit() }}
+        </div>
+      </form>
+    </div>
+  </body>
+</html>
+ -->
+<!-- <!doctype html>
+<html lang="en">
+<head>
+    <meta charset="utf-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Login</title>
+    <script src="https://cdn.tailwindcss.com"></script>
+</head>
+<body class="bg-gray-100 flex items-center justify-center h-screen">
+    <div class="bg-white p-8 rounded-lg shadow-lg max-w-md w-full">
+        <h1 class="text-2xl font-bold mb-6">Login</h1>
+        <form method="POST" action="{{ url_for('auth.login') }}">
+            {{ form.hidden_tag() }}
+            <div class="mb-4">
+                {{ form.username.label(class="block text-sm font-medium text-gray-700") }}
+                {{ form.username(class="mt-1 p-2 block w-full shadow-sm sm:text-sm border-gray-300 rounded-md") }}
+            </div>
+            <div class="mb-4">
+                {{ form.password.label(class="block text-sm font-medium text-gray-700") }}
+                {{ form.password(class="mt-1 p-2 block w-full shadow-sm sm:text-sm border-gray-300 rounded-md") }}
+            </div>
+            <div class="mb-4 flex items-center">
+                {{ form.remember_me(class="h-4 w-4 text-indigo-600 focus:ring-indigo-500 border-gray-300 rounded") }}
+                {{ form.remember_me.label(class="ml-2 block text-sm text-gray-900") }}
+            </div>
+            <div class="mb-4">
+                {{ form.submit(class="w-full bg-indigo-600 text-white py-2 px-4 rounded-md hover:bg-indigo-700") }}
+            </div>
+        </form>
+        <div class="text-sm text-center">
+            <a href="{{ url_for('auth.register') }}" class="text-indigo-600 hover:text-indigo-700">Create an account</a>
+        </div>
+    </div>
+</body>
+</html> -->
+
+<!doctype html>
+<html lang="en">
+<head>
+    <meta charset="utf-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Login</title>
+    <script src="https://cdn.tailwindcss.com"></script>
+</head>
+<body class="bg-gray-100 flex items-center justify-center h-screen">
+    <div class="bg-white p-8 rounded-lg shadow-lg max-w-md w-full">
+        <h1 class="text-2xl font-bold mb-6">Login</h1>
+        {% with messages = get_flashed_messages(with_categories=true) %}
+            {% if messages %}
+                <div class="mb-4">
+                    {% for category, message in messages %}
+                        <div class="text-red-500">{{ message }}</div>
+                    {% endfor %}
+                </div>
+            {% endif %}
+        {% endwith %}
+        <form method="POST" action="{{ url_for('auth.login') }}">
+            {{ form.hidden_tag() }}
+            <div class="mb-4">
+                {{ form.username.label(class="block text-sm font-medium text-gray-700") }}
+                {{ form.username(class="mt-1 p-2 block w-full shadow-sm sm:text-sm border-gray-300 rounded-md") }}
+            </div>
+            <div class="mb-4">
+                {{ form.password.label(class="block text-sm font-medium text-gray-700") }}
+                {{ form.password(class="mt-1 p-2 block w-full shadow-sm sm:text-sm border-gray-300 rounded-md") }}
+            </div>
+            <div class="mb-4 flex items-center">
+                {{ form.remember_me(class="mr-2") }}
+                {{ form.remember_me.label(class="block text-sm font-medium text-gray-700") }}
+            </div>
+            <div class="mb-4">
+                {{ form.submit(class="w-full bg-indigo-600 text-white py-2 px-4 rounded-md hover:bg-indigo-700") }}
+            </div>
+        </form>
+        <div class="text-sm text-center">
+            <a href="{{ url_for('auth.register') }}" class="text-indigo-600 hover:text-indigo-700">Don't have an account? Register</a>
+        </div>
+    </div>
+</body>
+</html>
+
