@@ -1,20 +1,151 @@
- <!doctype html>
-<html lang="en">
-  <head>
-    <meta charset="utf-8">
-    <meta name="viewport" content="width=device-width, initial-scale=1, shrink-to-fit=no">
-    <title>Dashboard</title>
-    <script src="https://cdn.tailwindcss.com"></script>
-  </head>
-  <body class="bg-gray-100 font-sans leading-normal tracking-normal">
-    <div class="container mx-auto px-4">
-      <div class="flex justify-between items-center bg-white p-6 rounded-lg shadow-md mt-6">
-        <h1 class="text-2xl font-bold">Bienvenido, {{ current_user.username }}</h1>
-        <a href="{{ url_for('auth.logout') }}" class="bg-red-500 hover:bg-red-700 text-white font-bold py-2 px-4 rounded">
-          Logout
-        </a>
-      </div>
-      
-    </div>
-  </body>
-</html> 
+<!doctype html>
+ <html lang="en">
+   <head>
+     <meta charset="utf-8">
+     <meta name="viewport" content="width=device-width, initial-scale=1, shrink-to-fit=no">
+     <title>Dashboard</title>
+     <script src="https://cdn.tailwindcss.com"></script>
+     <style>
+       .fade-in {
+         animation: fadeIn 1s ease-out;
+       }
+       @keyframes fadeIn {
+         from { opacity: 0; }
+         to { opacity: 1; }
+       }
+       .transform-hover:hover {
+         transform: scale(1.05);
+         transition: transform 0.3s ease;
+       }
+       .focus-input:focus {
+         border-color: #4f46e5;
+         box-shadow: 0 0 0 2px rgba(99, 102, 241, 0.3);
+       }
+     </style>
+   </head>
+   <body class="bg-gray-100 font-sans leading-normal tracking-normal">
+     <div class="container mx-auto px-4 py-8 fade-in">
+       <div class="flex justify-between items-center bg-white p-6 rounded-lg shadow-md mt-6 transition-shadow hover:shadow-xl">
+         <h1 class="text-2xl font-bold">Bienvenido, {{ current_user.username }}</h1>
+         <a href="{{ url_for('auth.logout') }}" class="bg-red-500 hover:bg-red-700 text-white font-bold py-2 px-4 rounded transition-colors duration-300">
+           Logout
+         </a>
+       </div>
+ 
+       <div class="bg-white p-6 rounded-lg shadow-md mt-6">
+         <h2 class="text-xl font-semibold mb-4">Consultas de Productos</h2>
+         
+         <!-- Consultar todos los productos -->
+         <form action="{{ url_for('api.show_productos') }}" method="get" class="mb-4">
+           <button type="submit" class="bg-blue-500 hover:bg-blue-700 text-white font-bold py-2 px-4 rounded transform-hover transition-transform duration-300">
+             Consultar todos los productos
+           </button>
+         </form>
+ 
+         <!-- Consultar un producto por ID -->
+         <form action="{{ url_for('api.show_producto', id=1) }}" method="get" class="mb-4">
+           <input type="number" name="id" placeholder="ID del producto" required class="border border-gray-300 p-2 rounded focus-input transition-all duration-300">
+           <button type="submit" class="bg-blue-500 hover:bg-blue-700 text-white font-bold py-2 px-4 rounded transform-hover transition-transform duration-300">
+             Consultar un producto por ID
+           </button>
+         </form>
+ 
+         <!-- Consultar un producto por nombre -->
+         <form action="{{ url_for('api.show_producto_por_nombre', nombre='nombre') }}" method="get" class="mb-4">
+           <input type="text" name="nombre" placeholder="Nombre del producto" required class="border border-gray-300 p-2 rounded focus-input transition-all duration-300">
+           <button type="submit" class="bg-blue-500 hover:bg-blue-700 text-white font-bold py-2 px-4 rounded transform-hover transition-transform duration-300">
+             Consultar un producto por nombre
+           </button>
+         </form>
+ 
+         <!-- Consultar calorías de un producto por ID -->
+         <form action="{{ url_for('api.show_producto_calorias', id=1) }}" method="get" class="mb-4">
+           <input type="number" name="id" placeholder="ID del producto" required class="border border-gray-300 p-2 rounded focus-input transition-all duration-300">
+           <button type="submit" class="bg-blue-500 hover:bg-blue-700 text-white font-bold py-2 px-4 rounded transform-hover transition-transform duration-300">
+             Consultar calorías de un producto por ID
+           </button>
+         </form>
+ 
+         <!-- Consultar rentabilidad de un producto por ID -->
+         <form action="{{ url_for('api.show_producto_rentabilidad', id=1) }}" method="get" class="mb-4">
+           <input type="number" name="id" placeholder="ID del producto" required class="border border-gray-300 p-2 rounded focus-input transition-all duration-300">
+           <button type="submit" class="bg-blue-500 hover:bg-blue-700 text-white font-bold py-2 px-4 rounded transform-hover transition-transform duration-300">
+             Consultar rentabilidad de un producto por ID
+           </button>
+         </form>
+ 
+         <!-- Consultar costo de producción de un producto por ID -->
+         <form action="{{ url_for('api.show_producto_costo_produccion', id=1) }}" method="get" class="mb-4">
+           <input type="number" name="id" placeholder="ID del producto" required class="border border-gray-300 p-2 rounded focus-input transition-all duration-300">
+           <button type="submit" class="bg-blue-500 hover:bg-blue-700 text-white font-bold py-2 px-4 rounded transform-hover transition-transform duration-300">
+             Consultar costo de producción de un producto por ID
+           </button>
+         </form>
+ 
+         <!-- Vender un producto por ID -->
+         <form action="{{ url_for('api.vender_producto', id=1) }}" method="post" class="mb-4">
+           <input type="number" name="id" placeholder="ID del producto" required class="border border-gray-300 p-2 rounded focus-input transition-all duration-300">
+           <button type="submit" class="bg-green-500 hover:bg-green-700 text-white font-bold py-2 px-4 rounded transform-hover transition-transform duration-300">
+             Vender un producto por ID
+           </button>
+         </form>
+ 
+         <!-- Reabastecer un producto por ID -->
+         <form action="{{ url_for('api.reabastecer_producto', id=1) }}" method="post" class="mb-4">
+           <input type="number" name="id" placeholder="ID del producto" required class="border border-gray-300 p-2 rounded focus-input transition-all duration-300">
+           <input type="number" name="cantidad" placeholder="Cantidad a reabastecer" required class="border border-gray-300 p-2 rounded focus-input transition-all duration-300">
+           <button type="submit" class="bg-yellow-500 hover:bg-yellow-700 text-white font-bold py-2 px-4 rounded transform-hover transition-transform duration-300">
+             Reabastecer un producto por ID
+           </button>
+         </form>
+ 
+         <!-- Renovar inventario de un producto por ID -->
+         <form action="{{ url_for('api.renovar_producto', id=1) }}" method="post" class="mb-4">
+           <input type="number" name="id" placeholder="ID del producto" required class="border border-gray-300 p-2 rounded focus-input transition-all duration-300">
+           <input type="number" name="nuevo_inventario" placeholder="Nuevo inventario" required class="border border-gray-300 p-2 rounded focus-input transition-all duration-300">
+           <button type="submit" class="bg-yellow-500 hover:bg-yellow-700 text-white font-bold py-2 px-4 rounded transform-hover transition-transform duration-300">
+             Renovar inventario de un producto por ID
+           </button>
+         </form>
+       </div>
+ 
+       <div class="bg-white p-6 rounded-lg shadow-md mt-6">
+         <h2 class="text-xl font-semibold mb-4">Consultas de Ingredientes</h2>
+ 
+         <!-- Consultar todos los ingredientes -->
+         <form action="{{ url_for('api.show_ingredientes') }}" method="get" class="mb-4">
+           <button type="submit" class="bg-purple-500 hover:bg-purple-700 text-white font-bold py-2 px-4 rounded transform-hover transition-transform duration-300">
+             Consultar todos los ingredientes
+           </button>
+         </form>
+ 
+         <!-- Consultar un ingrediente por ID -->
+         <form action="{{ url_for('api.show_ingrediente', id=1) }}" method="get" class="mb-4">
+           <input type="number" name="id" placeholder="ID del ingrediente" required class="border border-gray-300 p-2 rounded focus-input transition-all duration-300">
+           <button type="submit" class="bg-purple-500 hover:bg-purple-700 text-white font-bold py-2 px-4 rounded transform-hover transition-transform duration-300">
+             Consultar un ingrediente por ID
+           </button>
+         </form>
+ 
+         <!-- Consultar un ingrediente por nombre -->
+         <form action="{{ url_for('api.show_ingrediente_por_nombre', nombre='nombre') }}" method="get" class="mb-4">
+           <input type="text" name="nombre" placeholder="Nombre del ingrediente" required class="border border-gray-300 p-2 rounded focus-input transition-all duration-300">
+           <button type="submit" class="bg-purple-500 hover:bg-purple-700 text-white font-bold py-2 px-4 rounded transform-hover transition-transform duration-300">
+             Consultar un ingrediente por nombre
+           </button>
+         </form>
+ 
+         <!-- Consultar si un ingrediente es sano por ID -->
+         <form action="{{ url_for('api.show_ingrediente_sano', id=1) }}" method="get" class="mb-4">
+           <input type="number" name="id" placeholder="ID del ingrediente" required class="border border-gray-300 p-2 rounded focus-input transition-all duration-300">
+           <button type="submit" class="bg-purple-500 hover:bg-purple-700 text-white font-bold py-2 px-4 rounded transform-hover transition-transform duration-300">
+             Consultar si un ingrediente es sano por ID
+           </button>
+         </form>
+       </div>
+     </div>
+   </body>
+ </html>
+ 
+ 
+ 
