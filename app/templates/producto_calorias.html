@@ -8,8 +8,8 @@
 </head>
 <body>
     <div class="container mx-auto px-4 py-8">
-        <h1 class="text-2xl font-bold mb-4">Calorías del Producto: {{ producto.nombre }}</h1>
-        <p><strong>Calorías:</strong> {{ producto.calorias }}</p>
+        <h1 class="text-4xl font-bold mb-4">Calorías del Producto: {{ producto.nombre }}</h1>
+        <p><strong>Calorías:</strong> {{ totalCalories }}</p>
         <a href="{{ url_for('api.show_producto', id=producto.id) }}" class="text-blue-500 hover:underline">Volver al producto</a>
     </div>
 </body>

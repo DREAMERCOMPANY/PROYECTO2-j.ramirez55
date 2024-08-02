@@ -1,0 +1,27 @@
+<!doctype html>
+<html lang="en">
+<head>
+    <meta charset="utf-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1, shrink-to-fit=no">
+    <title>Producto Sano</title>
+    <link href="https://cdn.jsdelivr.net/npm/tailwindcss@2.0.0/dist/tailwind.min.css" rel="stylesheet">
+</head>
+<body>
+    <div class="container mx-auto px-4 py-8">
+        <h1 class="text-4xl font-bold mb-4">Producto Sano</h1>
+        <h2 class="text-2xl font-bold mb-4">Producto: {{ producto.nombre }}</h2>
+
+        <h3 class="text-xl font-bold mb-4">Ingredientes:</h3>
+        <ul class="list-disc pl-5 mb-4">
+            {% for ingrediente in producto.ingredientes %}
+                <li>
+                    <strong>Ingrediente:</strong> {{ ingrediente.nombre }}<br>
+                    <strong>Es Vegetariano:</strong> Sí
+                </li>
+            {% endfor %}
+        </ul>
+        
+        <a href="{{ url_for('api.show_producto', id=producto.id) }}" class="text-blue-500 hover:underline mt-4 inline-block">Volver al producto</a>
+    </div>
+</body>
+</html>

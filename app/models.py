@@ -40,6 +40,7 @@ class Producto(db.Model):
     id = db.Column(db.Integer, primary_key=True)
     nombre = db.Column(db.String(64), unique=True, nullable=False)
     precio_publico = db.Column(db.Float, nullable=False)
+    ingredientes = db.relationship('Ingrediente', secondary = 'productos_ingredientes', lazy = 'subquery', backref= db.backref('products', lazy=True))
 
     def to_dict(self):
         return {
@@ -55,8 +56,8 @@ class ProductoIngrediente(db.Model):
     producto_id = db.Column(db.Integer, db.ForeignKey('productos.id'), nullable=False)
     ingrediente_id = db.Column(db.Integer, db.ForeignKey('ingredientes.id'), nullable=False)
 
-    producto = db.relationship('Producto', backref=db.backref('producto_ingredientes', lazy=True))
-    ingrediente = db.relationship('Ingrediente', backref=db.backref('producto_ingredientes', lazy=True))
+    #producto = db.relationship('Producto', backref=db.backref('producto_ingredientes', lazy=True))
+    #ingrediente = db.relationship('Ingrediente', backref=db.backref('producto_ingredientes', lazy=True))
 
     def to_dict(self):
         return {
