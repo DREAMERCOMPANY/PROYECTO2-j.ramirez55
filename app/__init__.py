@@ -1,4 +1,4 @@
-from flask import Flask, render_template
+from flask import Flask
 from config import Config
 from app.extensiones import db, migrate, login, bcrypt
 
@@ -27,4 +27,3 @@ def create_app(config_class=Config):
     app.register_blueprint(api_blueprint, url_prefix='/api')
 
     return app
-
