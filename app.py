@@ -1,8 +1,3 @@
-from flask import Flask
-
-app = Flask(__name__)
-
-@app.route('/')
-def hello():
-    return "Hello, World!"
-
+from app import create_app
+app = create_app()
+print("Application created successfully")
