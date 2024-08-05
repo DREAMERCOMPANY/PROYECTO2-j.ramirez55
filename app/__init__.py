@@ -1,5 +1,5 @@
 from flask import Flask
-from config import Config
+from app.config import Config
 from app.extensiones import db, migrate, login, bcrypt
 
 def create_app(config_class=Config):
