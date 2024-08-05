@@ -1,7 +1,7 @@
-from app import create_app
-from app.config import Config
-app = create_app(Config)
-print("Application created successfully")
+from flask import Flask
 
-if __name__ == '__main__':
-    app.run()
+def create_app():
+    app = Flask(__name__)
+    # Configuración y extensiones
+    return app
+

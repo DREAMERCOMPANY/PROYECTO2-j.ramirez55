@@ -1,4 +1,5 @@
-web: waitress-serve --listen=0.0.0.0:$PORT wsgi:app
+web: gunicorn app:create_app
+
 
 
 
