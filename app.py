@@ -1,7 +1,5 @@
-from flask import Flask
+from app import create_app
+app = create_app()
 
-def create_app():
-    app = Flask(__name__)
-    # Configuración y extensiones
-    return app
+
 

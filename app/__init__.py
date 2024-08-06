@@ -2,8 +2,7 @@ from flask import Flask
 from app.config import Config
 from app.extensiones import db, migrate, login, bcrypt
 
-def create_app(config_class=Config):
-    app = Flask(__name__)
+def create_app(app, config_class=Config):
     app.config.from_object(config_class)
 
     print("Configuration Loaded:")
@@ -30,5 +29,11 @@ def create_app(config_class=Config):
     app.register_blueprint(auth_bp)
     app.register_blueprint(api_blueprint, url_prefix='/api')
     return app
+
+app = Flask(__name__)
+create_app(app)
+
+
+
 
 
